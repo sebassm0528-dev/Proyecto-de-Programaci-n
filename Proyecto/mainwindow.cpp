@@ -21,11 +21,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_crear_button_clicked()
 {
-
     registroLogin registro = new registroLogin;
     this->hide();
     registro.exec();
-
 }
 
 //-------------------------------------------------------------------------------------------------------------------------
@@ -37,7 +35,7 @@ void MainWindow::on_ButtonLogin_clicked()
 
 //Para validar que se llenen todos los campos---------------------------------------------------------------
     if(usuario.isEmpty() || password.isEmpty()){
-        QMessageBox::warning(this,"Login","Campos vacíos");
+        QMessageBox::warning(this,"Campos vacíos","Por favor llene todos los campos");
         return;
     }
 

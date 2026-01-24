@@ -8,54 +8,22 @@
 
 //-------------------------------------------------------------------------------------------------------------
 
-//Validación para ID (permita solo numeros)
-class NumericDelegate : public QStyledItemDelegate {
-public:
-    QWidget *createEditor(QWidget *parent,
-                          const QStyleOptionViewItem &,
-                          const QModelIndex &) const override {
-
-        QLineEdit *editor = new QLineEdit(parent);
-        editor->setValidator(new QIntValidator(0, 999999, editor));
-        editor->setMaxLength(6);
-        return editor;
-    }
-};
-
-//-------------------------------------------------------------------------------------------------------------
-
-//Validación para Año de publicación (permita solo maximo 4 números "ej:2024")
-class YearDelegate : public QStyledItemDelegate {
-public:
-    QWidget *createEditor(QWidget *parent,
-                          const QStyleOptionViewItem &,
-                          const QModelIndex &) const override {
-
-        QLineEdit *editor = new QLineEdit(parent);
-        editor->setValidator(new QIntValidator(0, 2026, editor));
-        editor->setMaxLength(4);
-        return editor;
-    }
-};
-
-//-------------------------------------------------------------------------------------------------------------
-
 biblioteca::biblioteca(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::biblioteca)
 {
     ui->setupUi(this);
 
+    //Bloquea la escritura dentro del table widget al hacer click.
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
     //Validaciones para Año de publicación
     ui->publi_lineEdit->setValidator(new QIntValidator(0, 2026, this));
-    ui->tableWidget->setItemDelegateForColumn(3, new YearDelegate());
     ui->publi_lineEdit->setMaxLength(4);
 
     //Validación para ID
     ui->ID_lineEdit->setValidator(new QIntValidator(0, 999999, this));
-    ui->tableWidget->setItemDelegateForColumn(0, new YearDelegate());
     ui->ID_lineEdit->setMaxLength(6);
-
 
     //Para tableWidget (forma de la tabla)
     ui->tableWidget->setColumnCount(4);
@@ -99,11 +67,15 @@ void biblioteca::on_Agregar_button_clicked()
         return;
     }
 
-//Validación para que Año de publicación reciba hasta 2026-------------------------------------------------
+//Validación para que Año de publicación reciba desde 1500 hasta 2026--------------------------------------
     bool ok;
     int anio = publicacion.toInt(&ok);
-    if(!ok || anio > 2026){
-        QMessageBox::warning(this, "- Error -", "El año no puede ser mayor a 2026");
+    if(anio > 2026){
+        QMessageBox::warning(this, "- Error -", "El año de publicación no puede ser mayor a 2026");
+        return;
+    }
+    if(anio < 1500){
+        QMessageBox::warning(this, "- Error -", "El año de publicación no puede ser menor a 1500");
         return;
     }
 
@@ -259,7 +231,7 @@ void biblioteca::on_actualizar_button_clicked()
 
 void biblioteca::on_tableWidget_cellClicked(int row, int column)
 {
-    //Para actualizar la tabla en el tableWidget
+    //Carga los datos de la fila seleccionada en los LineEdit
     ui->ID_lineEdit->setText(ui->tableWidget->item(row, 0)->text());
     ui->titulo_lineEdit->setText(ui->tableWidget->item(row, 1)->text());
     ui->autor_lineEdit->setText(ui->tableWidget->item(row, 2)->text());

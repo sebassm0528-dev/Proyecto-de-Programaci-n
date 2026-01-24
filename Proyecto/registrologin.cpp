@@ -28,13 +28,13 @@ void registroLogin::on_pushButton_clicked()
 
 //Valida que todos los campos esten llenos-------------------------------------------------------------
     if(usuario.isEmpty() || password.isEmpty() || confirmarP.isEmpty()){
-        QMessageBox::warning(this,"Error","Complete todos los campos");
+        QMessageBox::warning(this,"Campos vacíos","Por favor llene todos los campos");
         return;
     }
 
 //Para validar que las contraseñas coincidan-----------------------------------------------------------
     if(password != confirmarP){
-        QMessageBox::warning(this,"Error","Las contraseñas no coinciden");
+        QMessageBox::warning(this,"- Error -","Las contraseñas no coinciden");
         return;
     }
 
@@ -50,7 +50,7 @@ void registroLogin::on_pushButton_clicked()
             QStringList datos = linea.split(";");
 
             if(datos[0] == usuario){
-                QMessageBox::warning(this,"Registro","Usuario ya existe");
+                QMessageBox::warning(this,"R E G I S T R O","Este usuario ya existe");
                 file.close();
                 return;
             }
@@ -65,7 +65,7 @@ void registroLogin::on_pushButton_clicked()
         file.close();
     }
 
-    QMessageBox::information(this,"Registro","Usuario registrado");
+    QMessageBox::information(this,"R E G I S T R O","Usuario registrado con exito");
 
     //Para volver al login------------------------------------------------------------
     MainWindow *login = new MainWindow();
@@ -73,8 +73,10 @@ void registroLogin::on_pushButton_clicked()
     this->close();
 }
 
+//--------------------------------------------------------------------------------------------
 
-void registroLogin::on_pushButton_2_clicked()
+//Boton para regresar al login
+void registroLogin::on_atras_pushButton_clicked()
 {
     MainWindow *login = new MainWindow;
     login->show();
