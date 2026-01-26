@@ -36,3 +36,17 @@ Sistema desarrollado en C++ con Qt que permite gestionar usuarios y una bibliote
 - C++
 - CMake
 
+
+---
+
+## Fuentes Consultadas
+
+https://www.tutorialspoint.com/cplusplus/cpp_files_streams.htm
+
+https://zetcode.com/gui/qt5/
+
+https://wiki.qt.io/Basic_Qt_Programming_Tutorial/es
+
+https://felgo.com/doc/qt/qtexamplesandtutorials/
+
+https://doc.qt.io/qt-6/widgets-getting-started.html
