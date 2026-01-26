@@ -8,7 +8,7 @@ Sistema desarrollado en C++ con Qt que permite gestionar usuarios y una bibliote
 - Login de usuarios
 - Registro de nuevos usuarios
 - Gestión de libros (Crear, Leer, Actualizar y Eliminar)
-- Almacenamiento de datos en archivos
+- Almacenamiento de datos en archivos (.txt)
 
 ---
 
@@ -36,7 +36,7 @@ Sistema desarrollado en C++ con Qt que permite gestionar usuarios y una bibliote
 - C++
 - CMake
 
-
+---
 ---
 
 ## Fuentes Consultadas
