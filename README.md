@@ -24,7 +24,7 @@ Sistema desarrollado en C++ con Qt que permite gestionar usuarios y una bibliote
 
 ---
 
-## 📚 Biblioteca (CRUD)
+## 📚 Pantalla de la Biblioteca (CRUD)
 
 <img width="816" height="862" alt="Biblioteca" src="https://github.com/user-attachments/assets/d5af6fe3-8529-4e0d-97d8-1e6a4db41a3c" />
 
